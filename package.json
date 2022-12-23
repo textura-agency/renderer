@@ -1,0 +1,52 @@
+{
+  "name": "@textura/renderer",
+  "version": "1.0.0",
+  "description": "Optimized small library for convenient work with coordinates and render loop. Aimed on creating websites scroll animations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "scripts": {
+    "dev": "webpack --env development --watch",
+    "build": "webpack --env production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/textura-agency/Renderer.git"
+  },
+  "keywords": [
+    "renderer",
+    "animation",
+    "scroll",
+    "interpolation",
+    "tween",
+    "ease",
+    "piecewise",
+    "typescript",
+    "textura.agency"
+  ],
+  "author": "Dzianis Krauchun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/textura-agency/Renderer/issues"
+  },
+  "homepage": "https://github.com/textura-agency/Renderer#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "babel-loader": "^8.2.4",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-webpack-plugin": "^3.1.1",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

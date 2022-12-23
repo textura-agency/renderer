@@ -4,8 +4,8 @@
  * @version 1.0.0
 **/
 
-const getElementDocumentCoords = (domElement) => {
-    if (!domElement) { 
+const getElementDocumentCoords = (domElement: HTMLElement) => {
+    if (!domElement) {
         console.error('getElementDocumentCoords: no domElement found')
         return {
             top: null,
@@ -14,7 +14,7 @@ const getElementDocumentCoords = (domElement) => {
             right: null,
             height: null,
             width: null
-        } 
+        }
     }
     return {
         top: domElement.getBoundingClientRect().top + window.scrollY,
@@ -26,8 +26,8 @@ const getElementDocumentCoords = (domElement) => {
     }
 }
 
-const getElementWindowCoords = (domElement) => {
-    if (!domElement) { 
+const getElementWindowCoords = (domElement: HTMLElement) => {
+    if (!domElement) {
         console.error('getElementWindowCoords: no domElement found')
         return {
             top: null,
@@ -36,7 +36,7 @@ const getElementWindowCoords = (domElement) => {
             right: null,
             height: null,
             width: null
-        } 
+        }
     }
     return {
         top: domElement.getBoundingClientRect().top,
@@ -48,12 +48,11 @@ const getElementWindowCoords = (domElement) => {
     }
 }
 
-const getScrollCoordsFromElement = (domElement) => {
+const getScrollCoordsFromElement = (domElement: HTMLElement) => {
     const domElementCoords = getElementDocumentCoords(domElement)
     if (domElementCoords.top === null || domElementCoords.bottom === null ||
         domElementCoords.left === null || domElementCoords.right === null ||
-        domElementCoords.height === null || domElementCoords.width === null) 
-    { 
+        domElementCoords.height === null || domElementCoords.width === null) {
         console.error("getScrollCoordsFromElement: No domElement found")
         return {
             windowTop: {
@@ -98,12 +97,11 @@ const getScrollCoordsFromElement = (domElement) => {
     }
 }
 
-const isElementVisible = (domElement) => {
+const isElementVisible = (domElement: HTMLElement) => {
     const domElementCoords = getElementDocumentCoords(domElement)
     if (domElementCoords.top === null || domElementCoords.bottom === null ||
         domElementCoords.left === null || domElementCoords.right === null ||
-        domElementCoords.height === null || domElementCoords.width === null) 
-    { 
+        domElementCoords.height === null || domElementCoords.width === null) {
         console.error("isElementVisible: No domElement found")
         return {
             partable: {
@@ -128,28 +126,28 @@ const isElementVisible = (domElement) => {
     }
 }
 
-const isElementFullyVisibleX = (domElement) => {
+const isElementFullyVisibleX = (domElement: HTMLElement) => {
     return isElementVisible(domElement).fully.x
 }
-const isElementFullyVisibleY = (domElement) => {
+const isElementFullyVisibleY = (domElement: HTMLElement) => {
     return isElementVisible(domElement).fully.y
 }
-const isElementFullyVisible = (domElement) => {
+const isElementFullyVisible = (domElement: HTMLElement) => {
     return isElementFullyVisibleX(domElement) && isElementFullyVisibleY(domElement)
 }
 
-const isElementPartableVisibleX = (domElement) => {
+const isElementPartableVisibleX = (domElement: HTMLElement) => {
     return isElementVisible(domElement).partable.x
 }
-const isElementPartableVisibleY = (domElement) => {
+const isElementPartableVisibleY = (domElement: HTMLElement) => {
     return isElementVisible(domElement).partable.y
 }
-const isElementPartableVisible = (domElement) => {
+const isElementPartableVisible = (domElement: HTMLElement) => {
     return isElementPartableVisibleX(domElement) || isElementPartableVisibleY(domElement)
 }
 
-export { 
-    getElementDocumentCoords, 
+export {
+    getElementDocumentCoords,
     getElementWindowCoords,
     getScrollCoordsFromElement,
     isElementFullyVisibleX,

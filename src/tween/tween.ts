@@ -3,11 +3,11 @@
  * @fileoverview Light optimised tween 2022
  * @version 1.0.0
 **/
-
+import { ITween, ITweenContext, ITweenFromTo } from "../interfaces/tween.interface"
 import Ease, { lerp } from "./easing"
 
 const Tween = {
-    to(from, to, { duration = 1000, renderDelay = 0, delay = 0, onChange = (context) => {}, onComplete = (context) => {}, ease = Ease.InOut }) {
+    to(from: ITweenFromTo, to: ITweenFromTo, { duration = 1000, renderDelay = 0, delay = 0, onChange = (context: ITweenContext) => {}, onComplete = (context: ITweenContext) => {}, ease = Ease.InOut }) {
         const MainStartTime = performance.now()
         let startTime = MainStartTime
         let complete = false
@@ -24,22 +24,26 @@ const Tween = {
                 startTime = performance.now()
                 
                 if (typeof from === 'number') {
+                    // @ts-expect-error
                     value = lerp(from, to, ease(t.nothole))
                 } else {
                     deepObject(from, to, value, t.nothole)
                 }
-                onChange({ value, state: t })
+                onChange({ value, state: t } as ITweenContext)
             }
-            if ( complete ) { onComplete({ value, state: t }) }
+            if ( complete ) { onComplete({ value, state: t } as ITweenContext) }
             if ( !complete ) { requestAnimationFrame(render) }
         })
 
-        function deepObject(from, to, value, t) {
+        // @ts-expect-error
+        function deepObject(from: ITweenFromTo, to: ITweenFromTo, value, t: number) {
             Object.keys(from).forEach(key => {
                 if (typeof from[key] === 'number') {
+                    // @ts-expect-error
                     value[key] = lerp(from[key], to[key], ease(t))
                 } else {
                     value[key] = {}
+                    // @ts-expect-error
                     deepObject(from[key], to[key], value[key], t)
                 }
             })

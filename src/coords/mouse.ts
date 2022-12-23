@@ -3,31 +3,31 @@
  * @fileoverview Convinient mouse coordinates api 2021
  * @version 1.0.0
 **/
-
+import { IMouse } from "../interfaces/mouse.interface"
 import { getElementDocumentCoords } from "./scroll"
 
-const Mouse = {
+const Mouse: IMouse = {
     mouse: null,
-    mouseListener: function(event) {
-        this.mouse = event
-        document.dispatchEvent(new CustomEvent("mouseupdate", {
-            bubbles: true, 
-            detail: { ...getMouseCoords() } 
-        }))
-    }.bind(this)
 }
+const mouseListener = function(this: IMouse, e: MouseEvent) {
+    this.mouse = e
+    document.dispatchEvent(new CustomEvent("mouseupdate", {
+        bubbles: true, 
+        detail: { ...getMouseCoords() } 
+    }))
+}.bind(Mouse)
 
 const subscribeMouse = function() {
-    document.addEventListener('mousemove', this.mouseListener)
-    document.addEventListener('mouseenter', this.mouseListener)
-}.bind(Mouse)
+    document.addEventListener('mousemove', mouseListener)
+    document.addEventListener('mouseenter', mouseListener)
+}
 
 const unsubscribeMouse = function() {
-    document.removeEventListener('mousemove', this.mouseListener)
-    document.removeEventListener('mouseenter', this.mouseListener)
-}.bind(Mouse)
+    document.removeEventListener('mousemove', mouseListener)
+    document.removeEventListener('mouseenter', mouseListener)
+}
 
-const getMouseCoords = function() {
+const getMouseCoords = function(this: IMouse) {
     if (this.mouse === null) { 
         return {
             document: {
@@ -52,7 +52,7 @@ const getMouseCoords = function() {
     }
 }.bind(Mouse)
 
-const getMouseCoordsFromElement = function(domElement) {
+const getMouseCoordsFromElement = function(domElement: HTMLElement) {
     const domElementCoords = getElementDocumentCoords(domElement)
     const mouseCoords = getMouseCoords().document
 
@@ -118,9 +118,9 @@ const getMouseCoordsFromElement = function(domElement) {
             }
         }
     }
-}.bind(Mouse)
+}
 
-const isElementHovered = function(domElement, additionalRadius = 0) {
+const isElementHovered = function(domElement: HTMLElement, additionalRadius: number = 0) {
     const domElementCoords = getElementDocumentCoords(domElement)
     const mouseCoords = getMouseCoords().document
     if (!domElementCoords.top || !domElementCoords.bottom ||
@@ -131,7 +131,7 @@ const isElementHovered = function(domElement, additionalRadius = 0) {
         return false 
     }
     return (domElementCoords.top - additionalRadius < mouseCoords.y && domElementCoords.bottom + additionalRadius > mouseCoords.y && domElementCoords.left - additionalRadius < mouseCoords.x && domElementCoords.right + additionalRadius > mouseCoords.x)
-}.bind(Mouse)
+}
 
 export {
     subscribeMouse,

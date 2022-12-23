@@ -3,7 +3,9 @@
  * @version 1.0.0
 **/
 
-const lerp = ( start, end, t = 0.075 ) => {
+import { IEase } from "../interfaces/ease.interface"
+
+const lerp = ( start: number, end: number, t = 0.075 ) => {
     return start + (end - start) * t
 }
 
@@ -59,7 +61,7 @@ const InOutCustom = (t = 0.075, strengthIn = 5, strengthOut = 5) => {
     return lerp(InCustom(t, strengthIn), OutCustom(t, strengthOut), t)
 }
 
-const Ease = {
+const Ease: IEase = {
     Line,
 
     In,
@@ -81,10 +83,10 @@ const Ease = {
     InOutCustom,
 }
 
-function pow(t, times = 2) {
+function pow(t: number, times = 2) {
     return Math.pow(t, times)
 }
-function flip(t) {
+function flip(t: number) {
     return ( 1 - t )
 }
 
