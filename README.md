@@ -2,7 +2,28 @@
 
 Optimized small library for convinient work with coordinates and render loop. Renderer is written on typescipt. You can use it in any frontend framework or native js. **Aimed on creating websites animations**
 
-**@author: denkravchu@gmail.com**
+[![npm version](https://badge.fury.io/js/textura-renderer.svg)](https://www.npmjs.com/package/textura-renderer)
+[![](https://data.jsdelivr.com/v1/package/npm/textura-renderer/badge)](https://www.jsdelivr.com/package/npm/textura-renderer)
+
+## Quick start
+
+### Install
+
+#### npm
+
+For module bundlers such as Webpack or Browserify.
+
+```shell
+npm i textura-renderer
+```
+
+##### CDN
+
+Recommended for learning purposes, you can use the latest version:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/textura-renderer/dist/index.js"></script>
+```
 
 ## api 
 
@@ -294,3 +315,6 @@ Light tween and easing functions for interpolating between two values.
 | Methods | Props  |  Return Type  | Description |
 | ----------- | ------------ | ----------- | ------------ |
 | lerp |  start: number, end: number, t?: number |  number  | -- |
+
+
+**@author: denkravchu@gmail.com**
