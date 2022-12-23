@@ -1,6 +1,6 @@
 {
   "name": "textura-renderer",
-  "version": "1.0.1",
+  "version": "1.0.21",
   "description": "Optimized small library for convenient work with coordinates and render loop. Aimed on creating websites scroll animations",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
