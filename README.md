@@ -33,7 +33,7 @@ Optimized small library for convinient work with coordinates and render loop. Re
 		Tween,
 		Ease,
 		lerp
-	} from 'Renderer'
+	} from 'textura-renderer'
 
 
 |  Methods | Props  |  Return Type  | Description |
