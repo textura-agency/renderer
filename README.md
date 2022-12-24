@@ -7,7 +7,7 @@ Optimized small library for convenient work with coordinates and render loop. Re
 
 ## Quick start
 
-### Install
+### Installation
 
 #### npm
 
@@ -34,14 +34,22 @@ Recommended for learning purposes, you can use the latest version:
 All methods are available on the object "Renderer":
 
 
-	<script type=""text/javascript"">
+	<script type="text/javascript">
 		Renderer.startRender()
 		Renderer.stopRender()
 		...
 	</script>
 
+## Docs
 
-## api 
+- [Installation](#installation)
+- [All methods](#all-methods)
+- [Core renderer methods](#core-renderer-methods)
+- [Mouse methods](#mouse-methods)
+- [Interpolation](#interpolation)
+- [Tweening](#tweening)
+
+
 
 #### All methods
 
@@ -94,7 +102,7 @@ All methods are available on the object "Renderer":
 |  isElementPartableVisibleX | domElement: HTMLElement  | boolean   | return is element partable visible on x axe   |
 |  isElementPartableVisibleY | domElement: HTMLElement  |  boolean  | return is element partable visible on y axe   |
 |  isElementPartableVisible | domElement: HTMLElement  |   boolean |  return is element partable visible (true if partable visible on x or y axes)   |
-|  getInterpolated | config: { timeline: timelineType, interface: InterfaceType }, time: number  |  { [key] : { [innerKey]: number }, ... }  |  return object of keys which contains keys with number values in current time. **this version uses only piecwise function for interpolation**  |
+|  getInterpolated | config: { timeline: timelineType, interface: InterfaceType }, time: number  |  { [key] : { [innerKey]: number }, ... }  |  return object of keys which contains keys with number values in current time. **this version uses only piecewise function for interpolation**  |
 | Tween.to |  {}: TweenPropsType |  void  | -- |
 | Ease.Line | time: number  |  number  | Bezier Linear |
 | Ease.In | time: number  |  number  | Bezier In |
