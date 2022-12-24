@@ -46,6 +46,7 @@ All methods are available on the object "Renderer":
 - [All methods](#all-methods)
 - [Core renderer methods](#core-renderer-methods)
 - [Mouse methods](#mouse-methods)
+- [Coordinates methods](#coordinates-methods)
 - [Interpolation](#interpolation)
 - [Tweening](#tweening)
 
