@@ -1,52 +1,7 @@
 declare const subscribeMouse: () => void;
 declare const unsubscribeMouse: () => void;
-declare const getMouseCoords: () => {
-    document: {
-        x: null;
-        y: null;
-    };
-    window: {
-        x: null;
-        y: null;
-    };
-} | {
-    document: {
-        x: number;
-        y: number;
-    };
-    window: {
-        x: number;
-        y: number;
-    };
-};
+declare const getMouseCoords: any;
 declare const getMouseCoordsFromElement: (domElement: HTMLElement) => {
-    top: {
-        left: {
-            x: null;
-            y: null;
-        };
-        right: {
-            x: null;
-            y: null;
-        };
-    };
-    center: {
-        center: {
-            x: null;
-            y: null;
-        };
-    };
-    bottom: {
-        left: {
-            x: null;
-            y: null;
-        };
-        right: {
-            x: null;
-            y: null;
-        };
-    };
-} | {
     top: {
         left: {
             x: number;

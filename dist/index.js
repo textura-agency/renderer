@@ -1,1 +1,408 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("renderer",[],t):"object"==typeof exports?exports.renderer=t():e.renderer=t()}("undefined"==typeof self?this:self,(function(){return function(){"use strict";var e={367:function(e,t,n){Object.defineProperty(t,"__esModule",{value:!0}),t.isElementHovered=t.getMouseCoordsFromElement=t.getMouseCoords=t.unsubscribeMouse=t.subscribeMouse=void 0;const o=n(368),i={mouse:null},l=function(e){this.mouse=e,document.dispatchEvent(new CustomEvent("mouseupdate",{bubbles:!0,detail:{...r()}}))}.bind(i);t.subscribeMouse=function(){document.addEventListener("mousemove",l),document.addEventListener("mouseenter",l)},t.unsubscribeMouse=function(){document.removeEventListener("mousemove",l),document.removeEventListener("mouseenter",l)};const r=function(){return null===this.mouse?{document:{x:null,y:null},window:{x:null,y:null}}:{document:{x:this.mouse.pageX,y:this.mouse.pageY},window:{x:this.mouse.clientX,y:this.mouse.clientY}}}.bind(i);t.getMouseCoords=r,t.getMouseCoordsFromElement=function(e){const t=(0,o.getElementDocumentCoords)(e),n=r().document;return t.top&&t.bottom&&t.left&&t.right&&t.height&&t.width&&n.x&&n.y?{top:{left:{x:n.x-t.left,y:n.y-t.top},right:{x:n.x-(t.left+t.width),y:n.y-t.top}},center:{center:{x:n.x-(t.left+t.width/2),y:n.y-(t.top+t.height/2)}},bottom:{left:{x:n.x-t.left,y:n.y-t.bottom},right:{x:n.x-(t.left+t.width),y:n.y-t.bottom}}}:(console.error("getMouseCoordsFromElement: No domElement found"),{top:{left:{x:null,y:null},right:{x:null,y:null}},center:{center:{x:null,y:null}},bottom:{left:{x:null,y:null},right:{x:null,y:null}}})},t.isElementHovered=function(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:0;const n=(0,o.getElementDocumentCoords)(e),i=r().document;return n.top&&n.bottom&&n.left&&n.right&&n.height&&n.width&&i.x&&i.y?n.top-t<i.y&&n.bottom+t>i.y&&n.left-t<i.x&&n.right+t>i.x:(console.error("isElementHovered: No domElement found"),!1)}},368:function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.isElementPartableVisible=t.isElementPartableVisibleY=t.isElementPartableVisibleX=t.isElementFullyVisible=t.isElementFullyVisibleY=t.isElementFullyVisibleX=t.getScrollCoordsFromElement=t.getElementWindowCoords=t.getElementDocumentCoords=void 0;const n=e=>e?{top:e.getBoundingClientRect().top+window.scrollY,bottom:e.getBoundingClientRect().bottom+window.scrollY,left:e.getBoundingClientRect().left+window.scrollX,right:e.getBoundingClientRect().right+window.scrollX,height:e.getBoundingClientRect().height,width:e.getBoundingClientRect().width}:(console.error("getElementDocumentCoords: no domElement found"),{top:null,bottom:null,left:null,right:null,height:null,width:null});t.getElementDocumentCoords=n,t.getElementWindowCoords=e=>e?{top:e.getBoundingClientRect().top,bottom:e.getBoundingClientRect().bottom,left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,height:e.getBoundingClientRect().height,width:e.getBoundingClientRect().width}:(console.error("getElementWindowCoords: no domElement found"),{top:null,bottom:null,left:null,right:null,height:null,width:null}),t.getScrollCoordsFromElement=e=>{const t=n(e);return null===t.top||null===t.bottom||null===t.left||null===t.right||null===t.height||null===t.width?(console.error("getScrollCoordsFromElement: No domElement found"),{windowTop:{fromTop:null,fromBetweenTopMiddle:null,fromMiddle:null,fromBetweenMiddleBottom:null,fromBottom:null},windowBottom:{fromTop:null,fromBetweenTopMiddle:null,fromMiddle:null,fromBetweenMiddleBottom:null,fromBottom:null},windowRight:{fromRight:null,fromLeft:null}}):{windowTop:{fromTop:window.scrollY-t.top,fromBetweenTopMiddle:window.scrollY-(t.top+t.height/4),fromMiddle:window.scrollY-(t.top+t.height/2),fromBetweenMiddleBottom:window.scrollY-(t.bottom-t.height/4),fromBottom:window.scrollY-t.bottom},windowBottom:{fromTop:window.scrollY+window.innerHeight-t.top,fromBetweenTopMiddle:window.scrollY+window.innerHeight-(t.top+t.height/4),fromMiddle:window.scrollY+window.innerHeight-(t.top+t.height/2),fromBetweenMiddleBottom:window.scrollY+window.innerHeight-(t.bottom-t.height/4),fromBottom:window.scrollY+window.innerHeight-t.bottom},windowRight:{fromRight:window.innerWidth-t.right,fromLeft:window.innerWidth-t.left}}};const o=e=>{const t=n(e);return null===t.top||null===t.bottom||null===t.left||null===t.right||null===t.height||null===t.width?(console.error("isElementVisible: No domElement found"),{partable:{x:!1,y:!1},fully:{x:!1,y:!1}}):{partable:{x:t.right>=0&&t.left<=window.innerWidth,y:t.bottom>=window.scrollY&&t.top<=window.scrollY+window.innerHeight},fully:{x:t.right<=window.innerWidth&&t.left>=0,y:t.bottom<=window.scrollY+window.innerHeight&&t.top>=window.scrollY}}},i=e=>o(e).fully.x;t.isElementFullyVisibleX=i;const l=e=>o(e).fully.y;t.isElementFullyVisibleY=l,t.isElementFullyVisible=e=>i(e)&&l(e);const r=e=>o(e).partable.x;t.isElementPartableVisibleX=r;const u=e=>o(e).partable.y;t.isElementPartableVisibleY=u,t.isElementPartableVisible=e=>r(e)||u(e)},820:function(e,t,n){var o=this&&this.__createBinding||(Object.create?function(e,t,n,o){void 0===o&&(o=n);var i=Object.getOwnPropertyDescriptor(t,n);i&&!("get"in i?!t.__esModule:i.writable||i.configurable)||(i={enumerable:!0,get:function(){return t[n]}}),Object.defineProperty(e,o,i)}:function(e,t,n,o){void 0===o&&(o=n),e[o]=t[n]}),i=this&&this.__exportStar||function(e,t){for(var n in e)"default"===n||Object.prototype.hasOwnProperty.call(t,n)||o(t,e,n)};Object.defineProperty(t,"__esModule",{value:!0}),i(n(726),t),i(n(367),t),i(n(368),t),i(n(636),t),i(n(79),t),i(n(373),t)},636:function(e,t,n){Object.defineProperty(t,"__esModule",{value:!0}),t.interpolation=void 0;const o={piecewise:n(53).piecewise};t.interpolation=(e,t)=>{const n=o.piecewise,i=e.timeline,l=e.interface;return i.length<2?console.error('[interpolation]: Minimum count of points "2"'):(function(){for(let e in l){const o=l[e].$TIME;if(o.length<2)return console.error('[interpolation]: Minimum count children in $TIME: [] in interpolationInterfce "2"');if(t<o[0])n(e,[o.at(0)],l,i,t);else if(t>=o[o.length-1])n(e,[o.at(-1)],l,i,t);else for(let r=0;r<o.length-1;r++)t>=o[r]&&t<o[r+1]&&n(e,[o.at(r),o.at(r+1)],l,i,t)}}(),l)}},53:function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.piecewise=void 0,t.piecewise=(e,t,n,o,i)=>{if(1===t.length)return n[e]={...o.filter((e=>e.$TIME===t[0]))[0][e],$TIME:n[e].$TIME};const l=t[0],r=t[1],u=o.filter((e=>e.$TIME===l))[0][e],d=o.filter((e=>e.$TIME===r))[0][e];if(void 0===u||void 0===d)return void console.error(`[ITL]: invalid $TIME in Interface "${e}, ${l}, ${r}"`);const s=Math.max(Math.min(i,r),l);Object.keys(n[e]).forEach((t=>{"$TIME"!==e&&"$TIME"!==t&&(n[e][t]=(s-l)/(r-l)*(d[t]-u[t])+u[t])}))}},726:function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.getRendering=t.removeFromRender=t.setToRender=t.startRender=t.stopRender=void 0;const n={handlers:[],isRendering:!1},o=function(){this.isRendering=!1}.bind(n);t.stopRender=o;const i=function(){this.isRendering=!0,requestAnimationFrame(function e(t){this.isRendering&&(this.handlers.forEach((e=>e.rendering(t))),requestAnimationFrame(e.bind(n)))}.bind(n))}.bind(n);t.startRender=i;const l=function(e){let{label:t,handler:n,delay:o}=e;const i=t||this.handlers.length;n?"function"==typeof n?this.handlers.push({handler:n,label:i,delay:o||10,startTime:performance.now(),rendering(e){e-this.startTime>=this.delay&&(this.startTime=performance.now(),this.handler(e))}}):console.error(`Renderer: Invalid type of handler, required Function. Handler label "${i}"`):console.error(`Renderer: Handler for render is required. Handler label "${i}"`)}.bind(n);t.setToRender=l;const r=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"removeLastFromRender",t=0;"removeLastFromRender"!==e?(this.handlers=this.handlers.filter((n=>n.label!==e||(t++,!1))),0===t&&console.warn(`Renderer: No handlers with label "${e}" in rendering`)):this.handlers=this.handlers.slice(0,this.handlers.length-1)}.bind(n);t.removeFromRender=r;const u=function(){return this.handlers}.bind(n);t.getRendering=u},373:function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.lerp=void 0;const n=function(e,t){let n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:.075;return e+(t-e)*n};t.lerp=n;const o=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return a(e)},i=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return a(e,3)},l=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return a(e,4)},r=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return a(e,5)},u=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:5;return a(e,t)},d=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return g(a(g(e)))},s=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return g(a(g(e),3))},c=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return g(a(g(e),4))},f=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return g(a(g(e),5))},h=function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:5;return g(a(g(e),t))},m={Line:function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return e},In:o,InCubic:i,InQuartic:l,InQuintic:r,InCustom:u,Out:d,OutCubic:s,OutQuartic:c,OutQuintic:f,OutCustom:h,InOut:function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return n(o(e),d(e),e)},InOutCubic:function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return n(i(e),s(e),e)},InOutQuartic:function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return n(l(e),c(e),e)},InOutQuintic:function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075;return n(r(e),f(e),e)},InOutCustom:function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:.075,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:5,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:5;return n(u(e,t),h(e,o),e)}};function a(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2;return Math.pow(e,t)}function g(e){return 1-e}t.default=m},79:function(e,t,n){var o=this&&this.__createBinding||(Object.create?function(e,t,n,o){void 0===o&&(o=n);var i=Object.getOwnPropertyDescriptor(t,n);i&&!("get"in i?!t.__esModule:i.writable||i.configurable)||(i={enumerable:!0,get:function(){return t[n]}}),Object.defineProperty(e,o,i)}:function(e,t,n,o){void 0===o&&(o=n),e[o]=t[n]}),i=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),l=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)"default"!==n&&Object.prototype.hasOwnProperty.call(e,n)&&o(t,e,n);return i(t,e),t};Object.defineProperty(t,"__esModule",{value:!0});const r=l(n(373)),u={to(e,t,n){let{duration:o=1e3,renderDelay:i=0,delay:l=0,onChange:u=(e=>{}),onComplete:d=(e=>{}),ease:s=r.default.InOut}=n;const c=performance.now();let f=c,h=!1;const m=l;function a(e,t,n,o){Object.keys(e).forEach((i=>{"number"==typeof e[i]?n[i]=(0,r.lerp)(e[i],t[i],s(o)):(n[i]={},a(e[i],t[i],n[i],o))}))}requestAnimationFrame((function n(g){const w={hole:(g-c)/(o+m),nothole:(g-(c+m))/o};let p={};h=w.hole>=1,g-f>i&&g-f>l&&(l=0,f=performance.now(),"number"==typeof e?p=(0,r.lerp)(e,t,s(w.nothole)):a(e,t,p,w.nothole),u({value:p,state:w})),h&&d({value:p,state:w}),h||requestAnimationFrame(n)}))}};t.default=u}},t={},n=function n(o){var i=t[o];if(void 0!==i)return i.exports;var l=t[o]={exports:{}};return e[o].call(l.exports,l,l.exports,n),l.exports}(820);return n.default}()}));
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Renderer = {}));
+})(this, (function (exports) { 'use strict';
+
+    const Renderer = {
+        handlers: [],
+        isRendering: false,
+    };
+    const stopRender = function () {
+        this.isRendering = false;
+    }.bind(Renderer);
+    const startRender = function () {
+        this.isRendering = true;
+        requestAnimationFrame(function render(time) {
+            if (!this.isRendering) {
+                return;
+            }
+            this.handlers.forEach((item) => item.rendering(time));
+            requestAnimationFrame(render.bind(Renderer));
+        }.bind(Renderer));
+    }.bind(Renderer);
+    const setToRender = function ({ label, handler, delay }) {
+        const newLabel = label || this.handlers.length;
+        if (!handler) {
+            console.error(`Renderer: Handler for render is required. Handler label "${newLabel}"`);
+            return;
+        }
+        if (typeof handler !== "function") {
+            console.error(`Renderer: Invalid type of handler, required Function. Handler label "${newLabel}"`);
+            return;
+        }
+        this.handlers.push({
+            handler,
+            label: newLabel,
+            delay: delay || 10,
+            startTime: performance.now(),
+            rendering(time) {
+                if (time - this.startTime >= this.delay) {
+                    this.startTime = performance.now();
+                    this.handler(time);
+                }
+            },
+        });
+    }.bind(Renderer);
+    const removeFromRender = function (label = 'removeLastFromRender') {
+        let isRequested = 0;
+        if (label === 'removeLastFromRender') {
+            this.handlers = this.handlers.slice(0, this.handlers.length - 1);
+            return;
+        }
+        this.handlers = this.handlers.filter((item) => {
+            if (item.label !== label) {
+                return true;
+            }
+            isRequested++;
+            return false;
+        });
+        if (isRequested === 0) {
+            console.warn(`Renderer: No handlers with label "${label}" in rendering`);
+        }
+    }.bind(Renderer);
+    const getRendering = function () {
+        return this.handlers;
+    }.bind(Renderer);
+
+    const getElementDocumentCoords = (domElement) => {
+        if (!domElement) {
+            console.error('getElementDocumentCoords: no domElement found');
+            return {
+                top: null,
+                bottom: null,
+                left: null,
+                right: null,
+                height: null,
+                width: null
+            };
+        }
+        return {
+            top: domElement.getBoundingClientRect().top + window.scrollY,
+            bottom: domElement.getBoundingClientRect().bottom + window.scrollY,
+            left: domElement.getBoundingClientRect().left + window.scrollX,
+            right: domElement.getBoundingClientRect().right + window.scrollX,
+            height: domElement.getBoundingClientRect().height,
+            width: domElement.getBoundingClientRect().width,
+        };
+    };
+    const getElementWindowCoords = (domElement) => {
+        if (!domElement) {
+            console.error('getElementWindowCoords: no domElement found');
+            return {
+                top: null,
+                bottom: null,
+                left: null,
+                right: null,
+                height: null,
+                width: null
+            };
+        }
+        return {
+            top: domElement.getBoundingClientRect().top,
+            bottom: domElement.getBoundingClientRect().bottom,
+            left: domElement.getBoundingClientRect().left,
+            right: domElement.getBoundingClientRect().right,
+            height: domElement.getBoundingClientRect().height,
+            width: domElement.getBoundingClientRect().width,
+        };
+    };
+    const getScrollCoordsFromElement = (domElement) => {
+        const domElementCoords = getElementDocumentCoords(domElement);
+        if (domElementCoords.top === null || domElementCoords.bottom === null ||
+            domElementCoords.left === null || domElementCoords.right === null ||
+            domElementCoords.height === null || domElementCoords.width === null) {
+            console.error("getScrollCoordsFromElement: No domElement found");
+            return {
+                windowTop: {
+                    fromTop: null,
+                    fromBetweenTopMiddle: null,
+                    fromMiddle: null,
+                    fromBetweenMiddleBottom: null,
+                    fromBottom: null
+                },
+                windowBottom: {
+                    fromTop: null,
+                    fromBetweenTopMiddle: null,
+                    fromMiddle: null,
+                    fromBetweenMiddleBottom: null,
+                    fromBottom: null
+                },
+                windowRight: {
+                    fromRight: null,
+                    fromLeft: null
+                }
+            };
+        }
+        return {
+            windowTop: {
+                fromTop: window.scrollY - domElementCoords.top,
+                fromBetweenTopMiddle: window.scrollY - (domElementCoords.top + domElementCoords.height / 4),
+                fromMiddle: window.scrollY - (domElementCoords.top + domElementCoords.height / 2),
+                fromBetweenMiddleBottom: window.scrollY - (domElementCoords.bottom - domElementCoords.height / 4),
+                fromBottom: window.scrollY - domElementCoords.bottom
+            },
+            windowBottom: {
+                fromTop: window.scrollY + window.innerHeight - domElementCoords.top,
+                fromBetweenTopMiddle: window.scrollY + window.innerHeight - (domElementCoords.top + domElementCoords.height / 4),
+                fromMiddle: window.scrollY + window.innerHeight - (domElementCoords.top + domElementCoords.height / 2),
+                fromBetweenMiddleBottom: window.scrollY + window.innerHeight - (domElementCoords.bottom - domElementCoords.height / 4),
+                fromBottom: window.scrollY + window.innerHeight - domElementCoords.bottom
+            },
+            windowRight: {
+                fromRight: window.innerWidth - domElementCoords.right,
+                fromLeft: window.innerWidth - domElementCoords.left
+            }
+        };
+    };
+    const isElementVisible = (domElement) => {
+        const domElementCoords = getElementDocumentCoords(domElement);
+        if (domElementCoords.top === null || domElementCoords.bottom === null ||
+            domElementCoords.left === null || domElementCoords.right === null ||
+            domElementCoords.height === null || domElementCoords.width === null) {
+            console.error("isElementVisible: No domElement found");
+            return {
+                partable: {
+                    x: false,
+                    y: false
+                },
+                fully: {
+                    x: false,
+                    y: false
+                }
+            };
+        }
+        return {
+            partable: {
+                x: domElementCoords.right >= 0 && domElementCoords.left <= window.innerWidth,
+                y: domElementCoords.bottom >= window.scrollY && domElementCoords.top <= window.scrollY + window.innerHeight
+            },
+            fully: {
+                x: domElementCoords.right <= window.innerWidth && domElementCoords.left >= 0,
+                y: domElementCoords.bottom <= window.scrollY + window.innerHeight && domElementCoords.top >= window.scrollY
+            }
+        };
+    };
+    const isElementFullyVisibleX = (domElement) => {
+        return isElementVisible(domElement).fully.x;
+    };
+    const isElementFullyVisibleY = (domElement) => {
+        return isElementVisible(domElement).fully.y;
+    };
+    const isElementFullyVisible = (domElement) => {
+        return isElementFullyVisibleX(domElement) && isElementFullyVisibleY(domElement);
+    };
+    const isElementPartableVisibleX = (domElement) => {
+        return isElementVisible(domElement).partable.x;
+    };
+    const isElementPartableVisibleY = (domElement) => {
+        return isElementVisible(domElement).partable.y;
+    };
+    const isElementPartableVisible = (domElement) => {
+        return isElementPartableVisibleX(domElement) || isElementPartableVisibleY(domElement);
+    };
+
+    const Mouse = {
+        mouse: null,
+    };
+    const mouseListener = function (e) {
+        this.mouse = e;
+        document.dispatchEvent(new CustomEvent("mouseupdate", {
+            bubbles: true,
+            detail: { ...getMouseCoords() }
+        }));
+    }.bind(Mouse);
+    const subscribeMouse = function () {
+        document.addEventListener('mousemove', mouseListener);
+        document.addEventListener('mouseenter', mouseListener);
+    };
+    const unsubscribeMouse = function () {
+        document.removeEventListener('mousemove', mouseListener);
+        document.removeEventListener('mouseenter', mouseListener);
+    };
+    const getMouseCoords = function () {
+        if (this.mouse === null) {
+            return {
+                document: {
+                    x: null,
+                    y: null,
+                },
+                window: {
+                    x: null,
+                    y: null
+                }
+            };
+        }
+        return {
+            document: {
+                x: this.mouse.pageX,
+                y: this.mouse.pageY
+            },
+            window: {
+                x: this.mouse.clientX,
+                y: this.mouse.clientY,
+            }
+        };
+    }.bind(Mouse);
+    const getMouseCoordsFromElement = function (domElement) {
+        const domElementCoords = getElementDocumentCoords(domElement);
+        const mouseCoords = getMouseCoords().document;
+        if (!domElementCoords.top || !domElementCoords.bottom ||
+            !domElementCoords.left || !domElementCoords.right ||
+            !domElementCoords.height || !domElementCoords.width ||
+            !mouseCoords.x || !mouseCoords.y) {
+            console.error("getMouseCoordsFromElement: No domElement found");
+            return {
+                top: {
+                    left: {
+                        x: null,
+                        y: null,
+                    },
+                    right: {
+                        x: null,
+                        y: null,
+                    }
+                },
+                center: {
+                    center: {
+                        x: null,
+                        y: null,
+                    }
+                },
+                bottom: {
+                    left: {
+                        x: null,
+                        y: null,
+                    },
+                    right: {
+                        x: null,
+                        y: null,
+                    }
+                }
+            };
+        }
+        return {
+            top: {
+                left: {
+                    x: mouseCoords.x - (domElementCoords.left),
+                    y: mouseCoords.y - (domElementCoords.top),
+                },
+                right: {
+                    x: mouseCoords.x - (domElementCoords.left + domElementCoords.width),
+                    y: mouseCoords.y - (domElementCoords.top),
+                }
+            },
+            center: {
+                center: {
+                    x: mouseCoords.x - (domElementCoords.left + domElementCoords.width / 2),
+                    y: mouseCoords.y - (domElementCoords.top + domElementCoords.height / 2),
+                }
+            },
+            bottom: {
+                left: {
+                    x: mouseCoords.x - (domElementCoords.left),
+                    y: mouseCoords.y - (domElementCoords.bottom),
+                },
+                right: {
+                    x: mouseCoords.x - (domElementCoords.left + domElementCoords.width),
+                    y: mouseCoords.y - (domElementCoords.bottom),
+                }
+            }
+        };
+    };
+    const isElementHovered = function (domElement, additionalRadius = 0) {
+        const domElementCoords = getElementDocumentCoords(domElement);
+        const mouseCoords = getMouseCoords().document;
+        if (!domElementCoords.top || !domElementCoords.bottom ||
+            !domElementCoords.left || !domElementCoords.right ||
+            !domElementCoords.height || !domElementCoords.width ||
+            !mouseCoords.x || !mouseCoords.y) {
+            console.error("isElementHovered: No domElement found");
+            return false;
+        }
+        return (domElementCoords.top - additionalRadius < mouseCoords.y && domElementCoords.bottom + additionalRadius > mouseCoords.y && domElementCoords.left - additionalRadius < mouseCoords.x && domElementCoords.right + additionalRadius > mouseCoords.x);
+    };
+
+    const piecewise = (key, times, tInterface, timeline, time) => {
+        if (times.length === 1) {
+            return tInterface[key] = { ...timeline.filter(_ => _.$TIME === times[0])[0][key], $TIME: tInterface[key].$TIME };
+        }
+        const tA = times[0];
+        const tB = times[1];
+        const pA = timeline.filter(_ => _.$TIME === tA)[0][key];
+        const pB = timeline.filter(_ => _.$TIME === tB)[0][key];
+        if (pA === undefined || pB === undefined) {
+            console.error(`[ITL]: invalid $TIME in Interface "${key}, ${tA}, ${tB}"`);
+            return;
+        }
+        const t = Math.max(Math.min(time, tB), tA);
+        Object.keys(tInterface[key]).forEach((innerKey) => {
+            if (key === '$TIME' || innerKey === '$TIME') {
+                return;
+            }
+            tInterface[key][innerKey] = (t - tA) / (tB - tA) * (pB[innerKey] - pA[innerKey]) + pA[innerKey];
+        });
+    };
+
+    const functions = {
+        piecewise
+    };
+    const getInterpolated = (config, time) => {
+        const calc = functions.piecewise;
+        const timeline = config.timeline;
+        const tInterface = config.interface;
+        if (timeline.length < 2) {
+            return console.error('[interpolation]: Minimum count of points "2"');
+        }
+        fillInterface();
+        return tInterface;
+        function fillInterface() {
+            for (let key in tInterface) {
+                const times = tInterface[key].$TIME;
+                if (times.length < 2) {
+                    return console.error('[interpolation]: Minimum count children in $TIME: [] in interpolationInterfce "2"');
+                }
+                if (time < times[0]) {
+                    calc(key, [times.at(0)], tInterface, timeline, time);
+                }
+                else if (time >= times[times.length - 1]) {
+                    calc(key, [times.at(-1)], tInterface, timeline, time);
+                }
+                else {
+                    for (let i = 0; i < times.length - 1; i++) {
+                        if (time >= times[i] && time < times[i + 1]) {
+                            calc(key, [times.at(i), times.at(i + 1)], tInterface, timeline, time);
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const lerp = (start, end, t = 0.075) => {
+        return start + (end - start) * t;
+    };
+
+    exports.getElementDocumentCoords = getElementDocumentCoords;
+    exports.getElementWindowCoords = getElementWindowCoords;
+    exports.getInterpolated = getInterpolated;
+    exports.getMouseCoords = getMouseCoords;
+    exports.getMouseCoordsFromElement = getMouseCoordsFromElement;
+    exports.getRendering = getRendering;
+    exports.getScrollCoordsFromElement = getScrollCoordsFromElement;
+    exports.isElementFullyVisible = isElementFullyVisible;
+    exports.isElementFullyVisibleX = isElementFullyVisibleX;
+    exports.isElementFullyVisibleY = isElementFullyVisibleY;
+    exports.isElementHovered = isElementHovered;
+    exports.isElementPartableVisible = isElementPartableVisible;
+    exports.isElementPartableVisibleX = isElementPartableVisibleX;
+    exports.isElementPartableVisibleY = isElementPartableVisibleY;
+    exports.lerp = lerp;
+    exports.removeFromRender = removeFromRender;
+    exports.setToRender = setToRender;
+    exports.startRender = startRender;
+    exports.stopRender = stopRender;
+    exports.subscribeMouse = subscribeMouse;
+    exports.unsubscribeMouse = unsubscribeMouse;
+
+}));

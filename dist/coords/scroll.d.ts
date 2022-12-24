@@ -1,16 +1,4 @@
-/**
- * @author Den Kravchu <denkravchu@gmail.com>
- * @fileoverview Convinient scroll coordinates api 2021
- * @version 1.0.0
-**/
 declare const getElementDocumentCoords: (domElement: HTMLElement) => {
-    top: null;
-    bottom: null;
-    left: null;
-    right: null;
-    height: null;
-    width: null;
-} | {
     top: number;
     bottom: number;
     left: number;
@@ -19,13 +7,6 @@ declare const getElementDocumentCoords: (domElement: HTMLElement) => {
     width: number;
 };
 declare const getElementWindowCoords: (domElement: HTMLElement) => {
-    top: null;
-    bottom: null;
-    left: null;
-    right: null;
-    height: null;
-    width: null;
-} | {
     top: number;
     bottom: number;
     left: number;
@@ -34,25 +15,6 @@ declare const getElementWindowCoords: (domElement: HTMLElement) => {
     width: number;
 };
 declare const getScrollCoordsFromElement: (domElement: HTMLElement) => {
-    windowTop: {
-        fromTop: null;
-        fromBetweenTopMiddle: null;
-        fromMiddle: null;
-        fromBetweenMiddleBottom: null;
-        fromBottom: null;
-    };
-    windowBottom: {
-        fromTop: null;
-        fromBetweenTopMiddle: null;
-        fromMiddle: null;
-        fromBetweenMiddleBottom: null;
-        fromBottom: null;
-    };
-    windowRight: {
-        fromRight: null;
-        fromLeft: null;
-    };
-} | {
     windowTop: {
         fromTop: number;
         fromBetweenTopMiddle: number;

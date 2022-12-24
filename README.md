@@ -17,6 +17,12 @@ For module bundlers such as Webpack or Browserify.
 npm i textura-renderer
 ```
 
+	import {
+		startRender,
+		stopRender,
+		...
+	} from 'textura-renderer'
+
 ##### CDN
 
 Recommended for learning purposes, you can use the latest version:
@@ -24,6 +30,16 @@ Recommended for learning purposes, you can use the latest version:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/textura-renderer/dist/index.js"></script>
 ```
+
+All methods are available on the object "Renderer":
+
+
+	<script type=""text/javascript"">
+		Renderer.startRender()
+		Renderer.stopRender()
+		...
+	</script>
+
 
 ## api 
 
@@ -40,17 +56,17 @@ Recommended for learning purposes, you can use the latest version:
 		unsubscribeMouse,
 		getMouseCoords,
 		getMouseCoordsFromElement,
-		isElementHovered,
 		getElementDocumentCoords,
 		getElementWindowCoords,
 		getScrollCoordsFromElement,
+		isElementHovered,
 		isElementFullyVisibleX,
 		isElementFullyVisibleY,
 		isElementFullyVisible,
 		isElementPartableVisibleX,
 		isElementPartableVisibleY,
 		isElementPartableVisible,
-		interpolation,
+		getInterpolated,
 		Tween,
 		Ease,
 		lerp
@@ -78,7 +94,7 @@ Recommended for learning purposes, you can use the latest version:
 |  isElementPartableVisibleX | domElement: HTMLElement  | boolean   | return is element partable visible on x axe   |
 |  isElementPartableVisibleY | domElement: HTMLElement  |  boolean  | return is element partable visible on y axe   |
 |  isElementPartableVisible | domElement: HTMLElement  |   boolean |  return is element partable visible (true if partable visible on x or y axes)   |
-|  interpolation | config: { timeline: timelineType, interface: InterfaceType }, time: number  |  { [key] : { [innerKey]: number }, ... }  |  return object of keys which contains keys with number values in current time. **this version uses only piecwise function for interpolation**  |
+|  getInterpolated | config: { timeline: timelineType, interface: InterfaceType }, time: number  |  { [key] : { [innerKey]: number }, ... }  |  return object of keys which contains keys with number values in current time. **this version uses only piecwise function for interpolation**  |
 | Tween.to |  {}: TweenPropsType |  void  | -- |
 | Ease.Line | time: number  |  number  | Bezier Linear |
 | Ease.In | time: number  |  number  | Bezier In |
@@ -197,7 +213,7 @@ Convinient functions for dom elements coords. Use this methods anywhere.
 ___
 
 #### Interpolation
-Use "interpolation(config, time)" to create frameByFrame animation. For example on scroll. Or animate any looped object in render loop. U able to scroll video, transform any html content and so on
+Use "getInterpolated(config, time)" to create frameByFrame animation. For example on scroll. Or animate any looped object in render loop. U able to scroll video, transform any html content and so on
 
 ##### Example
     const Timeline = ( scrollContainer ) => {
@@ -257,7 +273,7 @@ Use "interpolation(config, time)" to create frameByFrame animation. For example 
     		handler: ( time ) => {
 				if (!scrollContainer.current || !header.current || !svg.current) { return }
 				const config = Timeline( scrollContainer.current )
-				const t = interpolation( config, window.scrollY )
+				const t = getInterpolated( config, window.scrollY )
 				header.current.style.cssText = `
 					opacity: ${t.header.opacity};
 					transform: translateY(t.header.translateY);
@@ -272,7 +288,7 @@ Use "interpolation(config, time)" to create frameByFrame animation. For example 
 
 |  Methods | Props  |  Return Type  | Description |
 | ------------ | ------------ | ------------ | ------------ |
-|  interpolation | config: { timeline: timelineType, interface: InterfaceType }, time: number  |  { [key] : { [innerKey]: number }, ... }  |  return object of keys which contains keys with number values in current time. **this version uses only piecwise function for interpolation**  |
+|  getInterpolated | config: { timeline: timelineType, interface: InterfaceType }, time: number  |  { [key] : { [innerKey]: number }, ... }  |  return object of keys which contains keys with number values in current time. **this version uses only piecwise function for interpolation**  |
 
 ___
 

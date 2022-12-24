@@ -10,7 +10,7 @@ const functions: IInterpolationFunctions = {
     piecewise
 }
 
-const interpolation = (config: IInterpolationConfig, time: number) => {
+const getInterpolated = (config: IInterpolationConfig, time: number) => {
     // todo: make api for different functions
     const calc = functions.piecewise
 
@@ -42,4 +42,4 @@ const interpolation = (config: IInterpolationConfig, time: number) => {
 }
 
 
-export { interpolation }
+export { getInterpolated }
