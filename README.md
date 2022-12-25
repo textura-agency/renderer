@@ -1,3 +1,27 @@
+ <div class="center">
+  <a href="https://www.npmjs.com/package/@vueform/multiselect" target="_blank">
+    <img alt="npm" src="https://img.shields.io/npm/dm/@vueform/multiselect?color=%2353ca2f">
+  </a>
+
+  <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/vueform/multiselect">
+
+  <a href="https://codecov.io/gh/vueform/multiselect" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/vueform/multiselect"/>
+  </a>
+
+  <a href="https://www.npmjs.com/package/@vueform/multiselect" target="_blank">
+    <img alt="npm bundle size (scoped version)" src="https://img.shields.io/bundlephobia/minzip/@vueform/multiselect?color=53ca2f">
+  </a>
+
+  <a href="https://discord.gg/WhX2nG6GTQ" target="_blank">
+    <img alt="Discord" src="https://img.shields.io/discord/787237947635793940">
+  </a>
+
+  <a href="https://www.npmjs.com/package/@vueform/multiselect" target="_blank">
+    <img alt="npm" src="https://img.shields.io/npm/v/@vueform/multiselect">
+  </a>
+ </div
+
 # Renderer
 
 Optimized small library for convenient work with coordinates and render loop. Renderer is written on typescipt. You can use it in any frontend framework or native js. **Aimed on creating websites animations**
