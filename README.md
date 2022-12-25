@@ -1,4 +1,8 @@
- <div class="center">
+# Renderer
+
+Optimized small library for convenient work with coordinates and render loop. Renderer is written on typescipt. You can use it in any frontend framework or native js. **Aimed on creating websites animations**
+
+<div class="center">
   <a href="https://www.npmjs.com/package/@vueform/multiselect" target="_blank">
     <img alt="npm" src="https://img.shields.io/npm/dm/@vueform/multiselect?color=%2353ca2f">
   </a>
@@ -6,12 +10,8 @@
   <a href="https://www.npmjs.com/package/@vueform/multiselect" target="_blank">
     <img alt="npm" src="https://img.shields.io/npm/v/@vueform/multiselect">
   </a>
- </div
+</div
 
-	
-# Renderer
-
-Optimized small library for convenient work with coordinates and render loop. Renderer is written on typescipt. You can use it in any frontend framework or native js. **Aimed on creating websites animations**
 
 ## Quick start
 
