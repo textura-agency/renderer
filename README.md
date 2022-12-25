@@ -1,7 +1,10 @@
+[![](https://data.jsdelivr.com/v1/package/npm/textura-renderer/badge)](https://www.jsdelivr.com/package/npm/textura-renderer)
+
 <div class="center">
   <a href="https://www.npmjs.com/package/textura-renderer" target="_blank">
     <img alt="npm" src="https://img.shields.io/npm/dm/textura-renderer">
   </a>
+  
 
   <a href="https://www.npmjs.com/package/textura-renderer" target="_blank">
     <img alt="npm" src="https://img.shields.io/npm/v/textura-renderer">
