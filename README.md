@@ -8,6 +8,7 @@
   </a>
  </div
 
+	
 # Renderer
 
 Optimized small library for convenient work with coordinates and render loop. Renderer is written on typescipt. You can use it in any frontend framework or native js. **Aimed on creating websites animations**
