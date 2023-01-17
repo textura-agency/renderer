@@ -56,40 +56,43 @@ const getMouseCoordsFromElement = function(domElement: HTMLElement) {
     const domElementCoords = getElementDocumentCoords(domElement)
     const mouseCoords = getMouseCoords().document
 
+    const nullObject = {
+        top: {
+            left: {
+                x: null,
+                y: null,
+            },
+            right: {
+                x: null,
+                y: null,
+            }
+        },
+        center: {
+            center: {
+                x: null,
+                y: null,
+            }
+        },
+        bottom: {
+            left: {
+                x: null,
+                y: null,
+            },
+            right: {
+                x: null,
+                y: null,
+            }
+        }
+    }
+
     if (domElementCoords.top === null || domElementCoords.bottom === null ||
         domElementCoords.left === null || domElementCoords.right === null ||
-        domElementCoords.height === null || domElementCoords.width === null ||
-        mouseCoords.x === null || mouseCoords.y === null) { 
+        domElementCoords.height === null || domElementCoords.width === null) { 
         console.error("getMouseCoordsFromElement: No domElement found")
-        return {
-            top: {
-                left: {
-                    x: null,
-                    y: null,
-                },
-                right: {
-                    x: null,
-                    y: null,
-                }
-            },
-            center: {
-                center: {
-                    x: null,
-                    y: null,
-                }
-            },
-            bottom: {
-                left: {
-                    x: null,
-                    y: null,
-                },
-                right: {
-                    x: null,
-                    y: null,
-                }
-            }
-        } 
+        return nullObject
     }
+    if (mouseCoords.x === null || mouseCoords.y === null) { return nullObject }
+
     return {
         top: {
             left: {
@@ -125,11 +128,11 @@ const isElementHovered = function(domElement: HTMLElement, additionalRadius: num
     const mouseCoords = getMouseCoords().document
     if (domElementCoords.top === null || domElementCoords.bottom === null ||
         domElementCoords.left === null || domElementCoords.right === null ||
-        domElementCoords.height === null || domElementCoords.width === null ||
-        mouseCoords.x === null || mouseCoords.y === null) { 
+        domElementCoords.height === null || domElementCoords.width === null) { 
         console.error("isElementHovered: No domElement found")
         return false 
     }
+    if (mouseCoords.x === null || mouseCoords.y === null) { return false }
     return (domElementCoords.top - additionalRadius < mouseCoords.y && domElementCoords.bottom + additionalRadius > mouseCoords.y && domElementCoords.left - additionalRadius < mouseCoords.x && domElementCoords.right + additionalRadius > mouseCoords.x)
 }
 
