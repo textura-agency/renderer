@@ -19,7 +19,7 @@ const piecewise = (key: string, times: number[], tInterface: IInterpolationInter
         return
     }
     const t = Math.max(Math.min(time, tB), tA)
-    Object.keys(tInterface[key]).forEach((innerKey: string) => {
+    Object.keys(tInterface[key]).forEach((innerKey: number | string) => {
         if ( key === '$TIME' || innerKey === '$TIME' ) { return }
         // @ts-expect-error
         tInterface[key][innerKey] = (t - tA) / (tB - tA) * (pB[innerKey] - pA[innerKey]) + pA[innerKey]

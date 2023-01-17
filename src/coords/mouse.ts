@@ -1,7 +1,7 @@
 /**
  * @author Den Kravchu <denkravchu@gmail.com>
  * @fileoverview Convinient mouse coordinates api 2021
- * @version 1.0.0
+ * @version 1.0.1
 **/
 import { IMouse } from "../interfaces/mouse.interface"
 import { getElementDocumentCoords } from "./scroll"
@@ -56,10 +56,10 @@ const getMouseCoordsFromElement = function(domElement: HTMLElement) {
     const domElementCoords = getElementDocumentCoords(domElement)
     const mouseCoords = getMouseCoords().document
 
-    if (!domElementCoords.top || !domElementCoords.bottom ||
-        !domElementCoords.left || !domElementCoords.right ||
-        !domElementCoords.height || !domElementCoords.width ||
-        !mouseCoords.x || !mouseCoords.y) { 
+    if (domElementCoords.top === null || domElementCoords.bottom === null ||
+        domElementCoords.left === null || domElementCoords.right === null ||
+        domElementCoords.height === null || domElementCoords.width === null ||
+        mouseCoords.x === null || mouseCoords.y === null) { 
         console.error("getMouseCoordsFromElement: No domElement found")
         return {
             top: {
@@ -123,10 +123,10 @@ const getMouseCoordsFromElement = function(domElement: HTMLElement) {
 const isElementHovered = function(domElement: HTMLElement, additionalRadius: number = 0) {
     const domElementCoords = getElementDocumentCoords(domElement)
     const mouseCoords = getMouseCoords().document
-    if (!domElementCoords.top || !domElementCoords.bottom ||
-        !domElementCoords.left || !domElementCoords.right ||
-        !domElementCoords.height || !domElementCoords.width ||
-        !mouseCoords.x || !mouseCoords.y) { 
+    if (domElementCoords.top === null || domElementCoords.bottom === null ||
+        domElementCoords.left === null || domElementCoords.right === null ||
+        domElementCoords.height === null || domElementCoords.width === null ||
+        mouseCoords.x === null || mouseCoords.y === null) { 
         console.error("isElementHovered: No domElement found")
         return false 
     }

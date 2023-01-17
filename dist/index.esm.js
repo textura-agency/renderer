@@ -357,15 +357,15 @@ const getInterpolated = (config, time) => {
                 return console.error('[interpolation]: Minimum count children in $TIME: [] in interpolationInterfce "2"');
             }
             if (time < times[0]) {
-                calc(key, [times.at(0)], tInterface, timeline, time);
+                calc(key, [times[0]], tInterface, timeline, time);
             }
             else if (time >= times[times.length - 1]) {
-                calc(key, [times.at(-1)], tInterface, timeline, time);
+                calc(key, [times[-1]], tInterface, timeline, time);
             }
             else {
                 for (let i = 0; i < times.length - 1; i++) {
                     if (time >= times[i] && time < times[i + 1]) {
-                        calc(key, [times.at(i), times.at(i + 1)], tInterface, timeline, time);
+                        calc(key, [times[i], times[i + 1]], tInterface, timeline, time);
                     }
                 }
             }
