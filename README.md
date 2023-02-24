@@ -17,24 +17,24 @@
 
 Optimized small library for convenient work with coordinates and render loop. Renderer is written on typescipt. You can use with frontend frameworks or native js. **Aimed on creating websites animations**
 
-**- excellent support projects on native JS or TS**
-**- excellent support React.js**
-**- partable support Vue.js. If you get errors, and use typescript, try import all components from "textura-renderer/src"**
-**- no support for Angular.js. But you are able to copy "textura-renderer" folder from "node_modules/" and put the file directly inside your project. If u still get errors, try import all methods from "src" folder.**
+- excellent support projects on native JS or TS
+- excellent support React.js
+- partable support Vue.js. **If you get errors, and use typescript, try import all components from "textura-renderer/src".**
+- no support for Angular.js. **But you are able to copy "textura-renderer" folder from "node_modules/" and put the file directly inside your project. If u still get errors, try import all methods from "src" folder.**
 
 
 #### Current Updates (24.02.2023, v1.0.4)
-**1. "label" & "delay" parameteries now is not required in "setToRender" method.**
-**2. Fix "getInterpolated" method. Now it works stable.**
-**3. Fix error in "getInterpolated" method example.**
+1. "label" & "delay" parameteries now is not required in "setToRender" method.
+2. Fix "getInterpolated" method. Now it works stable.
+3. Fix error in "getInterpolated" method example.
 
 #### Next Update (v1.0.5)
-**1. Add new methods: getMouseVelocity, getMouseVelocityX, getMouseVelocityY.**
-**2. Add new methods: getScrollVelocityX, getScrollVelocityY.**
+1. Add new methods: getMouseVelocity, getMouseVelocityX, getMouseVelocityY.
+2. Add new methods: getScrollVelocityX, getScrollVelocityY.
 
 #### Future Updates (v1.0.x)
-**1. Add hooks for React and Vue.**
-**...**
+1. Add hooks for React and Vue.
+...
 
 
 ## Quick start
