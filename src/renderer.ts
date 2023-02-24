@@ -31,7 +31,7 @@ const setToRender = function(this: IRenderer, { label, handler, delay }: IRender
     this.handlers.push({
         handler,
         label: newLabel,
-        delay: delay || 10,
+        delay: delay || 0,
         startTime: performance.now(),
         rendering(time) {
             if (time - this.startTime >= this.delay) {

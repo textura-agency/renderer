@@ -133,7 +133,7 @@ const isElementFullyVisibleY = (domElement: HTMLElement) => {
     return isElementVisible(domElement).fully.y
 }
 const isElementFullyVisible = (domElement: HTMLElement) => {
-    return isElementFullyVisibleX(domElement) && isElementFullyVisibleY(domElement)
+    return (isElementFullyVisibleX(domElement) && isElementFullyVisibleY(domElement))
 }
 
 const isElementPartableVisibleX = (domElement: HTMLElement) => {
@@ -143,7 +143,7 @@ const isElementPartableVisibleY = (domElement: HTMLElement) => {
     return isElementVisible(domElement).partable.y
 }
 const isElementPartableVisible = (domElement: HTMLElement) => {
-    return isElementPartableVisibleX(domElement) || isElementPartableVisibleY(domElement)
+    return (isElementPartableVisibleX(domElement) || isElementPartableVisibleY(domElement))
 }
 
 export {

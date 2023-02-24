@@ -4,8 +4,8 @@ export interface IRenderer {
 }
 export interface IRendererProps {
     handler: Function;
-    label: string | number;
-    delay: number;
+    label?: string | number;
+    delay?: number;
 }
 export interface IRendererHandler {
     handler: Function;

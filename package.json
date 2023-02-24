@@ -1,13 +1,14 @@
 {
   "name": "textura-renderer",
-  "version": "1.0.35",
+  "version": "1.0.4",
   "description": "Optimized small library for convenient work with coordinates and render loop. Aimed on creating websites scroll animations",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "dev": "http-server"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   },
   "homepage": "https://github.com/textura-agency/Renderer#readme",
   "devDependencies": {
+    "http-server": "^14.1.1",
     "rollup": "^3.8.1",
     "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^4.6.3"

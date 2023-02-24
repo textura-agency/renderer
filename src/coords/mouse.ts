@@ -3,7 +3,7 @@
  * @fileoverview Convinient mouse coordinates api 2021
  * @version 1.0.1
 **/
-import { IMouse } from "../interfaces/mouse.interface"
+import { IMouse, IGetMouseCoordsFromElement } from "../interfaces/mouse.interface"
 import { getElementDocumentCoords } from "./scroll"
 
 const Mouse: IMouse = {
@@ -52,11 +52,11 @@ const getMouseCoords = function(this: IMouse) {
     }
 }.bind(Mouse)
 
-const getMouseCoordsFromElement = function(domElement: HTMLElement) {
+const getMouseCoordsFromElement = function(domElement: HTMLElement): IGetMouseCoordsFromElement {
     const domElementCoords = getElementDocumentCoords(domElement)
     const mouseCoords = getMouseCoords().document
 
-    const nullObject = {
+    const nullObject: IGetMouseCoordsFromElement = {
         top: {
             left: {
                 x: null,

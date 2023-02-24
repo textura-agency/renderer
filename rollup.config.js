@@ -28,7 +28,8 @@ export default [
         ],
         "exclude": [
           "node_modules",
-          "dist"
+          "dist",
+          "test"
         ]
       }
     })]

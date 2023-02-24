@@ -1,7 +1,7 @@
 /**
  * @author Den Kravchu <denkravchu@gmail.com>
  * @fileoverview Interpolation 2022
- * @version 0.2.0.beta
+ * @version 0.2.1.beta
 **/
 import { IInterpolationFunctions, IInterpolationConfig, IInterpolationTimeline, IInterpolationInterface } from "../interfaces/interpolation.interface"
 import { piecewise } from "./piecewise"
@@ -14,7 +14,7 @@ const getInterpolated = (config: IInterpolationConfig, time: number) => {
     // todo: make api for different functions
     const calc = functions.piecewise
 
-    const timeline: IInterpolationTimeline = config.timeline
+    const timeline: any = config.timeline
     const tInterface: IInterpolationInterface = config.interface
 
     if ( timeline.length < 2 ) { return console.error('[interpolation]: Minimum count of points "2"') }
@@ -29,7 +29,7 @@ const getInterpolated = (config: IInterpolationConfig, time: number) => {
                 calc(key, [times[0]], tInterface, timeline, time)
             } else
             if ( time >= times[times.length - 1] ) {
-                calc(key, [times[-1]], tInterface, timeline, time)
+                calc(key, [times[times.length - 1]], tInterface, timeline, time)
             } else {
                 for ( let i = 0; i < times.length - 1; i++ ) {
                     if ( time >= times[i] && time < times[i + 1] ) {
@@ -40,6 +40,5 @@ const getInterpolated = (config: IInterpolationConfig, time: number) => {
         }
     }
 }
-
 
 export { getInterpolated }

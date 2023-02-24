@@ -34,7 +34,7 @@
         this.handlers.push({
             handler,
             label: newLabel,
-            delay: delay || 10,
+            delay: delay || 0,
             startTime: performance.now(),
             rendering(time) {
                 if (time - this.startTime >= this.delay) {
@@ -190,7 +190,7 @@
         return isElementVisible(domElement).fully.y;
     };
     const isElementFullyVisible = (domElement) => {
-        return isElementFullyVisibleX(domElement) && isElementFullyVisibleY(domElement);
+        return (isElementFullyVisibleX(domElement) && isElementFullyVisibleY(domElement));
     };
     const isElementPartableVisibleX = (domElement) => {
         return isElementVisible(domElement).partable.x;
@@ -199,7 +199,7 @@
         return isElementVisible(domElement).partable.y;
     };
     const isElementPartableVisible = (domElement) => {
-        return isElementPartableVisibleX(domElement) || isElementPartableVisibleY(domElement);
+        return (isElementPartableVisibleX(domElement) || isElementPartableVisibleY(domElement));
     };
 
     const Mouse = {
@@ -247,39 +247,42 @@
     const getMouseCoordsFromElement = function (domElement) {
         const domElementCoords = getElementDocumentCoords(domElement);
         const mouseCoords = getMouseCoords().document;
-        if (!domElementCoords.top || !domElementCoords.bottom ||
-            !domElementCoords.left || !domElementCoords.right ||
-            !domElementCoords.height || !domElementCoords.width ||
-            !mouseCoords.x || !mouseCoords.y) {
-            console.error("getMouseCoordsFromElement: No domElement found");
-            return {
-                top: {
-                    left: {
-                        x: null,
-                        y: null,
-                    },
-                    right: {
-                        x: null,
-                        y: null,
-                    }
+        const nullObject = {
+            top: {
+                left: {
+                    x: null,
+                    y: null,
                 },
-                center: {
-                    center: {
-                        x: null,
-                        y: null,
-                    }
-                },
-                bottom: {
-                    left: {
-                        x: null,
-                        y: null,
-                    },
-                    right: {
-                        x: null,
-                        y: null,
-                    }
+                right: {
+                    x: null,
+                    y: null,
                 }
-            };
+            },
+            center: {
+                center: {
+                    x: null,
+                    y: null,
+                }
+            },
+            bottom: {
+                left: {
+                    x: null,
+                    y: null,
+                },
+                right: {
+                    x: null,
+                    y: null,
+                }
+            }
+        };
+        if (domElementCoords.top === null || domElementCoords.bottom === null ||
+            domElementCoords.left === null || domElementCoords.right === null ||
+            domElementCoords.height === null || domElementCoords.width === null) {
+            console.error("getMouseCoordsFromElement: No domElement found");
+            return nullObject;
+        }
+        if (mouseCoords.x === null || mouseCoords.y === null) {
+            return nullObject;
         }
         return {
             top: {
@@ -313,11 +316,13 @@
     const isElementHovered = function (domElement, additionalRadius = 0) {
         const domElementCoords = getElementDocumentCoords(domElement);
         const mouseCoords = getMouseCoords().document;
-        if (!domElementCoords.top || !domElementCoords.bottom ||
-            !domElementCoords.left || !domElementCoords.right ||
-            !domElementCoords.height || !domElementCoords.width ||
-            !mouseCoords.x || !mouseCoords.y) {
+        if (domElementCoords.top === null || domElementCoords.bottom === null ||
+            domElementCoords.left === null || domElementCoords.right === null ||
+            domElementCoords.height === null || domElementCoords.width === null) {
             console.error("isElementHovered: No domElement found");
+            return false;
+        }
+        if (mouseCoords.x === null || mouseCoords.y === null) {
             return false;
         }
         return (domElementCoords.top - additionalRadius < mouseCoords.y && domElementCoords.bottom + additionalRadius > mouseCoords.y && domElementCoords.left - additionalRadius < mouseCoords.x && domElementCoords.right + additionalRadius > mouseCoords.x);
@@ -325,12 +330,12 @@
 
     const piecewise = (key, times, tInterface, timeline, time) => {
         if (times.length === 1) {
-            return tInterface[key] = { ...timeline.filter(_ => _.$TIME === times[0])[0][key], $TIME: tInterface[key].$TIME };
+            return tInterface[key] = { ...timeline.filter((_) => _.$TIME === times[0])[0][key], $TIME: tInterface[key].$TIME };
         }
         const tA = times[0];
         const tB = times[1];
-        const pA = timeline.filter(_ => _.$TIME === tA)[0][key];
-        const pB = timeline.filter(_ => _.$TIME === tB)[0][key];
+        const pA = timeline.filter((_) => _.$TIME === tA)[0][key];
+        const pB = timeline.filter((_) => _.$TIME === tB)[0][key];
         if (pA === undefined || pB === undefined) {
             console.error(`[ITL]: invalid $TIME in Interface "${key}, ${tA}, ${tB}"`);
             return;
@@ -366,7 +371,7 @@
                     calc(key, [times[0]], tInterface, timeline, time);
                 }
                 else if (time >= times[times.length - 1]) {
-                    calc(key, [times[-1]], tInterface, timeline, time);
+                    calc(key, [times[times.length - 1]], tInterface, timeline, time);
                 }
                 else {
                     for (let i = 0; i < times.length - 1; i++) {
